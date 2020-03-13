@@ -1,4 +1,8 @@
-﻿namespace Sapper
+﻿
+using System;
+using System.Threading;
+
+namespace Sapper
 {
     partial class Form1
     {
@@ -28,12 +32,57 @@
         /// </summary>
         private void InitializeComponent()
         {
+
             for (int i = 0; i < 10; i++)
             {
                 for (int j = 0; j < 10; j++)
                 {
-                    cell[i, j] = new Cell();
+                    cell[i, j] = new Cell(j, i);
                 }
+            }
+            for (int i = 0; i < Bombs; i++)
+            {
+                var rnd = new Random();
+                // while (cell[rnd.Next(0, 10), rnd.Next(0, 10)].IsBomb == true)
+                // {
+                int x = rnd.Next(0, 10);
+                int y = rnd.Next(0, 10);
+                cell[y, x].IsBomb = true;
+                if (y + 1 < 10 && cell[y + 1, x].IsBomb == false)
+                {
+                    cell[y + 1, x].Value++;
+                }
+                if (y - 1 >= 0 && cell[y - 1, x].IsBomb == false)
+                {
+                    cell[y - 1, x].Value++;
+                }
+                if (x + 1 < 10 && cell[y, x + 1].IsBomb == false)
+                {
+                    cell[y, x + 1].Value++;
+                }
+                if (x - 1 >= 0 && cell[y, x - 1].IsBomb == false)
+                {
+                    cell[y, x - 1].Value++;
+                }
+                if (x - 1 >= 0 && y - 1 > 0 && cell[y - 1, x - 1].IsBomb == false)
+                {
+                    cell[y - 1, x - 1].Value++;
+                }
+                if (x - 1 >= 0 && y + 1 < 10 && cell[y + 1, x - 1].IsBomb == false)
+                {
+                    cell[y + 1, x - 1].Value++;
+                }
+                if (x + 1 < 10 && y - 1 > 0 && cell[y - 1, x + 1].IsBomb == false)
+                {
+                    cell[y - 1, x + 1].Value++;
+                }
+                if (x + 1 < 10 && y + 1 < 10 && cell[y + 1, x + 1].IsBomb == false)
+                {
+                    cell[y + 1, x + 1].Value++;
+                }
+                //  }
+                Thread.Sleep(20);
+
             }
 
             this.SuspendLayout();
@@ -42,7 +91,7 @@
             {
                 for (int j = 0; j < 10; j++)
                 {
-         
+
                     this.cell[i, j].BackColor = System.Drawing.SystemColors.ActiveBorder;
                     this.cell[i, j].FlatAppearance.BorderSize = 0;
                     this.cell[i, j].FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -51,6 +100,7 @@
                     this.cell[i, j].Size = new System.Drawing.Size(25, 25);
                     this.cell[i, j].TabIndex = 0;
                     this.cell[i, j].UseVisualStyleBackColor = false;
+                    this.cell[i, j].Click += Field_Click;
                     k++;
                 }
             }
@@ -70,10 +120,29 @@
 
         }
 
+        private void Field_Click(object sender, System.EventArgs e)
+        {
+            var choice = sender as Cell;
+            if (choice.IsBomb)
+            {
+                choice.BackColor = System.Drawing.Color.FromArgb(18, 18, 18);
+                choice.Click -= Field_Click;
+                System.Windows.Forms.MessageBox.Show("Проиграл!");
+            }
+            else
+            {
+                if (choice.Value > 0)
+                    choice.Text = choice.Value.ToString();
+                else
+                    choice.BackColor = System.Drawing.Color.FromArgb(200, 200, 200);
+            }
+        }
+
         #endregion
 
 
         private Cell[,] cell = new Cell[10, 10];
+        private const int Bombs = 10;
     }
 }
 
