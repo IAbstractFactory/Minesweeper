@@ -1,6 +1,8 @@
 ﻿
 using System;
+using System.Drawing;
 using System.Threading;
+using System.Windows.Forms;
 
 namespace Sapper
 {
@@ -64,7 +66,7 @@ namespace Sapper
                 {
                     cell[y, x - 1].Value++;
                 }
-                if (x - 1 >= 0 && y - 1 > 0 && cell[y - 1, x - 1].IsBomb == false)
+                if (x - 1 >= 0 && y - 1 >= 0 && cell[y - 1, x - 1].IsBomb == false)
                 {
                     cell[y - 1, x - 1].Value++;
                 }
@@ -72,7 +74,7 @@ namespace Sapper
                 {
                     cell[y + 1, x - 1].Value++;
                 }
-                if (x + 1 < 10 && y - 1 > 0 && cell[y - 1, x + 1].IsBomb == false)
+                if (x + 1 < 10 && y - 1 >= 0 && cell[y - 1, x + 1].IsBomb == false)
                 {
                     cell[y - 1, x + 1].Value++;
                 }
@@ -123,6 +125,8 @@ namespace Sapper
         private void Field_Click(object sender, System.EventArgs e)
         {
             var choice = sender as Cell;
+            choice.Pressed = true;
+
             if (choice.IsBomb)
             {
                 choice.BackColor = System.Drawing.Color.FromArgb(18, 18, 18);
@@ -131,11 +135,48 @@ namespace Sapper
             }
             else
             {
+                choice.BackColor = System.Drawing.Color.FromArgb(230, 230, 230);
+
                 if (choice.Value > 0)
+                {
+                    choice.ForeColor = Color.Red;
+
                     choice.Text = choice.Value.ToString();
-                else
-                    choice.BackColor = System.Drawing.Color.FromArgb(200, 200, 200);
+                }
+                if (choice.X + 1 < 10 && !cell[choice.Y, choice.X + 1].IsBomb && !cell[choice.Y, choice.X + 1].Pressed && choice.Value == 0)
+                {
+                    Field_Click(cell[choice.Y, choice.X + 1], e);
+                }
+                if (choice.X - 1 >= 0 && !cell[choice.Y, choice.X - 1].IsBomb && !cell[choice.Y, choice.X - 1].Pressed && choice.Value == 0)
+                {
+                    Field_Click(cell[choice.Y, choice.X - 1], e);
+                }
+                if (choice.Y + 1 < 10 && !cell[choice.Y + 1, choice.X].IsBomb && !cell[choice.Y + 1, choice.X].Pressed && choice.Value == 0)
+                {
+                    Field_Click(cell[choice.Y + 1, choice.X], e);
+                }
+                if (choice.Y - 1 >= 0 && !cell[choice.Y - 1, choice.X].IsBomb && !cell[choice.Y - 1, choice.X].Pressed && choice.Value == 0)
+                {
+                    Field_Click(cell[choice.Y - 1, choice.X], e);
+                }
+                if (choice.X + 1 < 10 && choice.Y + 1 < 10 && !cell[choice.Y + 1, choice.X + 1].IsBomb && !cell[choice.Y + 1, choice.X + 1].Pressed && choice.Value == 0)
+                {
+                    Field_Click(cell[choice.Y + 1, choice.X + 1], e);
+                }
+                if (choice.X + 1 < 10 && choice.Y - 1 >= 0 && !cell[choice.Y - 1, choice.X + 1].IsBomb && !cell[choice.Y - 1, choice.X + 1].Pressed && choice.Value == 0)
+                {
+                    Field_Click(cell[choice.Y - 1, choice.X + 1], e);
+                }
+                if (choice.X - 1 >= 0 && choice.Y + 1 < 10 && !cell[choice.Y + 1, choice.X - 1].IsBomb && !cell[choice.Y + 1, choice.X - 1].Pressed && choice.Value == 0)
+                {
+                    Field_Click(cell[choice.Y + 1, choice.X - 1], e);
+                }
+                if (choice.X - 1 >= 0 && choice.Y - 1 >= 0 && !cell[choice.Y - 1, choice.X - 1].IsBomb && !cell[choice.Y - 1, choice.X - 1].Pressed && choice.Value == 0)
+                {
+                    Field_Click(cell[choice.Y - 1, choice.X - 1], e);
+                }
             }
+            choice.Enabled = false;
         }
 
         #endregion

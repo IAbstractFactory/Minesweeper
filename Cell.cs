@@ -10,6 +10,7 @@ namespace Sapper
     {
         public int Value { get; set; } = 0;
         public bool IsBomb { get; set; }
+        public bool Pressed { get; set; } = false;
         public int X { get; }
         public int Y { get; }
         public Cell(bool bomb, int x, int y)
