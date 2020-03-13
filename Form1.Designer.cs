@@ -49,40 +49,42 @@ namespace Sapper
                 // {
                 int x = rnd.Next(0, 10);
                 int y = rnd.Next(0, 10);
-                cell[y, x].IsBomb = true;
-                if (y + 1 < 10 && cell[y + 1, x].IsBomb == false)
+                if (cell[y, x].IsBomb != true)
                 {
-                    cell[y + 1, x].Value++;
+                    cell[y, x].IsBomb = true;
+                    if (y + 1 < 10 && cell[y + 1, x].IsBomb == false)
+                    {
+                        cell[y + 1, x].Value++;
+                    }
+                    if (y - 1 >= 0 && cell[y - 1, x].IsBomb == false)
+                    {
+                        cell[y - 1, x].Value++;
+                    }
+                    if (x + 1 < 10 && cell[y, x + 1].IsBomb == false)
+                    {
+                        cell[y, x + 1].Value++;
+                    }
+                    if (x - 1 >= 0 && cell[y, x - 1].IsBomb == false)
+                    {
+                        cell[y, x - 1].Value++;
+                    }
+                    if (x - 1 >= 0 && y - 1 >= 0 && cell[y - 1, x - 1].IsBomb == false)
+                    {
+                        cell[y - 1, x - 1].Value++;
+                    }
+                    if (x - 1 >= 0 && y + 1 < 10 && cell[y + 1, x - 1].IsBomb == false)
+                    {
+                        cell[y + 1, x - 1].Value++;
+                    }
+                    if (x + 1 < 10 && y - 1 >= 0 && cell[y - 1, x + 1].IsBomb == false)
+                    {
+                        cell[y - 1, x + 1].Value++;
+                    }
+                    if (x + 1 < 10 && y + 1 < 10 && cell[y + 1, x + 1].IsBomb == false)
+                    {
+                        cell[y + 1, x + 1].Value++;
+                    }
                 }
-                if (y - 1 >= 0 && cell[y - 1, x].IsBomb == false)
-                {
-                    cell[y - 1, x].Value++;
-                }
-                if (x + 1 < 10 && cell[y, x + 1].IsBomb == false)
-                {
-                    cell[y, x + 1].Value++;
-                }
-                if (x - 1 >= 0 && cell[y, x - 1].IsBomb == false)
-                {
-                    cell[y, x - 1].Value++;
-                }
-                if (x - 1 >= 0 && y - 1 >= 0 && cell[y - 1, x - 1].IsBomb == false)
-                {
-                    cell[y - 1, x - 1].Value++;
-                }
-                if (x - 1 >= 0 && y + 1 < 10 && cell[y + 1, x - 1].IsBomb == false)
-                {
-                    cell[y + 1, x - 1].Value++;
-                }
-                if (x + 1 < 10 && y - 1 >= 0 && cell[y - 1, x + 1].IsBomb == false)
-                {
-                    cell[y - 1, x + 1].Value++;
-                }
-                if (x + 1 < 10 && y + 1 < 10 && cell[y + 1, x + 1].IsBomb == false)
-                {
-                    cell[y + 1, x + 1].Value++;
-                }
-                //  }
                 Thread.Sleep(20);
 
             }
@@ -103,6 +105,7 @@ namespace Sapper
                     this.cell[i, j].TabIndex = 0;
                     this.cell[i, j].UseVisualStyleBackColor = false;
                     this.cell[i, j].Click += Field_Click;
+
                     k++;
                 }
             }
@@ -124,6 +127,7 @@ namespace Sapper
 
         private void Field_Click(object sender, System.EventArgs e)
         {
+
             var choice = sender as Cell;
             choice.Pressed = true;
 
