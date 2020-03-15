@@ -1,0 +1,10 @@
+C:\Users\Home\source\repos\MineSweeper\Minesweeper\bin\Debug\Sapper.exe.config
+C:\Users\Home\source\repos\MineSweeper\Minesweeper\bin\Debug\Sapper.exe
+C:\Users\Home\source\repos\MineSweeper\Minesweeper\bin\Debug\Sapper.pdb
+C:\Users\Home\source\repos\MineSweeper\Minesweeper\obj\Debug\Sapper.csprojAssemblyReference.cache
+C:\Users\Home\source\repos\MineSweeper\Minesweeper\obj\Debug\Sapper.Form1.resources
+C:\Users\Home\source\repos\MineSweeper\Minesweeper\obj\Debug\Sapper.Properties.Resources.resources
+C:\Users\Home\source\repos\MineSweeper\Minesweeper\obj\Debug\Sapper.csproj.GenerateResource.cache
+C:\Users\Home\source\repos\MineSweeper\Minesweeper\obj\Debug\Sapper.exe
+C:\Users\Home\source\repos\MineSweeper\Minesweeper\obj\Debug\Sapper.pdb
+C:\Users\Home\source\repos\MineSweeper\Minesweeper\obj\Debug\Sapper.Form2.resources
