@@ -27,6 +27,16 @@ namespace Sapper
             }
             base.Dispose(disposing);
         }
+        private bool Win()
+        {
+            bool t = true;
+            for (int i = 0; i < 10; i++)
+                for (int j = 0; j < 10; j++)
+                    if (!cell[i, j].IsBomb && cell[i, j].Enabled)
+                        t = false;
+
+            return t;
+        }
 
         #region Код, автоматически созданный конструктором форм Windows
 
@@ -128,7 +138,7 @@ namespace Sapper
         }
 
         private void Field_Click(object sender, MouseEventArgs e)
-        { 
+        {
             var choice = sender as Cell;
             var ee = e as MouseEventArgs;
             if (ee.Button == MouseButtons.Left)
@@ -143,6 +153,10 @@ namespace Sapper
                         choice.BackColor = System.Drawing.Color.FromArgb(18, 18, 18);
                         choice.MouseClick -= Field_Click;
                         System.Windows.Forms.MessageBox.Show("Проиграл!");
+                        this.Hide();
+                        Form2 form2 = new Form2();
+
+                        form2.Show();
                     }
                     else
                     {
@@ -191,13 +205,19 @@ namespace Sapper
                         }
                     }
                 }
-                
+
             }
             if (ee.Button == MouseButtons.Right)
             {
                 choice.ToFlag();
             }
-
+            if (Win())
+            {
+                MessageBox.Show("Вы победили!");
+                this.Hide();
+                Form2 form2 = new Form2();
+                form2.Show();
+            }
         }
 
         #endregion

@@ -8,3 +8,13 @@ C:\Users\Home\source\repos\MineSweeper\Minesweeper\obj\Debug\Sapper.csproj.Gener
 C:\Users\Home\source\repos\MineSweeper\Minesweeper\obj\Debug\Sapper.exe
 C:\Users\Home\source\repos\MineSweeper\Minesweeper\obj\Debug\Sapper.pdb
 C:\Users\Home\source\repos\MineSweeper\Minesweeper\obj\Debug\Sapper.Form2.resources
+C:\Users\Никита\source\repos\Sapper\bin\Debug\Sapper.exe.config
+C:\Users\Никита\source\repos\Sapper\bin\Debug\Sapper.exe
+C:\Users\Никита\source\repos\Sapper\bin\Debug\Sapper.pdb
+C:\Users\Никита\source\repos\Sapper\obj\Debug\Sapper.csprojAssemblyReference.cache
+C:\Users\Никита\source\repos\Sapper\obj\Debug\Sapper.Form1.resources
+C:\Users\Никита\source\repos\Sapper\obj\Debug\Sapper.Form2.resources
+C:\Users\Никита\source\repos\Sapper\obj\Debug\Sapper.Properties.Resources.resources
+C:\Users\Никита\source\repos\Sapper\obj\Debug\Sapper.csproj.GenerateResource.cache
+C:\Users\Никита\source\repos\Sapper\obj\Debug\Sapper.exe
+C:\Users\Никита\source\repos\Sapper\obj\Debug\Sapper.pdb
