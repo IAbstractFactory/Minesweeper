@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -17,8 +18,8 @@ namespace Sapper
             InitializeComponent();
         }
 
-     
-       
+
+
 
         private void button4_Click(object sender, EventArgs e)
         {
@@ -32,10 +33,13 @@ namespace Sapper
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Form1 form1 = new Form1();
-            form1.Show();
-            this.Hide();
-            
+
+           // this.Close();
+            new Form2().Show();
+
+
+
+
         }
     }
 }
